@@ -7,12 +7,12 @@ const loader = document.getElementById('loader');
 
 let apiQuotes = []
 
-function loading() {
+function showLoadingSpinner() {
     loader.hidden = false;
     quoteContainer.hidden = true;
 }
 
-function complete() {
+function removeLoadingSpinner() {
     quoteContainer.hidden = false;
     loader.hidden = true;
 }
@@ -35,12 +35,13 @@ function newQuote() {
         quote.classList.remove('long-quote');
     }
 
-    complete();
+    removeLoadingSpinner();
 }
 
 // Get quotes from the API
 async function getQuotes() {
-    loading();
+    showLoadingSpinner();
+    
     const apiUrl = 'https://jacintodesign.github.io/quotes-api/data/quotes.json';
     try {
         const response = await fetch(apiUrl);
